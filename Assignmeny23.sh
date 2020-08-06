@@ -367,4 +367,100 @@ public class EmpWageOOPs1
         }
 }
 
+###Usercase-11###
+
+        public class EmpWageFinal
+        {
+        public static final int IS_PART_TIME=1;
+        public static final int IS_FULL_TIME=2;
+
+        private int numOfCompany=0;
+        private CompanyEmpWage[] companyEmpWageArray;
+        public EmpWageFinal()
+        {
+               companyEmpWageArray= new CompanyEmpWage[5];
+        }
+        private void addCompanyEmpWage(String company,int empRatePerHour,int numOfWorkingDays,int maxHoursPerMonth)
+        {
+               companyEmpWageArray[numOfCompany]=new CompanyEmpWage(company,empRatePerHour,numOfWorkingDays,maxHoursPerMonth);
+               numOfCompany++;
+        }
+        private void computeEmpWage()
+        {
+          for(int i=0;i<numOfCompany;i++)
+            {
+                   companyEmpWageArray[i].setTotalEmpWage(this.computeEmpWage(companyEmpWageArray[i]));
+                   System.out.println(companyEmpWageArray[i]);
+            }
+        }
+        private int computeEmpWage(CompanyEmpWage companyEmpWage)
+        {
+            int totalEmpWage=0;
+            int totalEmpHrs=0;
+            int totalWorkingDays=0;
+            while(totalEmpHrs < companyEmpWage.MAX_HRS_IN_MONTHS && totalWorkingDays <companyEmpWage.NUM_OF_WORKING_DAYS)
+        {
+            totalWorkingDays++;
+            int empHrs=0;
+            int empWage=0;
+            int empcheck=(int) Math.floor(Math.random()*10)%3;
+
+           switch(empcheck)
+        {
+           case IS_FULL_TIME:
+           empHrs=8;
+           break;
+           case IS_PART_TIME:
+           empHrs=4;
+           break;
+           default:
+           empHrs=0;
+        }
+         totalEmpHrs+= empHrs;
+         totalEmpWage += totalEmpHrs*companyEmpWage.NUM_OF_WORKING_DAYS;
+         System.out.println("Employee wage : "+totalWorkingDays);
+         System.out.println("total Employee Hrs : " + totalEmpHrs);
+        }
+            return totalEmpHrs*companyEmpWage.EMP_RATE_PER_HOUR;
+        }
+        public static void main(String args[])
+        {
+         EmpWageFinal dmart=new EmpWageFinal();
+         dmart.addCompanyEmpWage("Dmart",2,3,4);
+         dmart.addCompanyEmpWage("Reliance",8,5,3)  ;
+         dmart.computeEmpWage();
+        }
+
+}
+
+       class CompanyEmpWage
+       {
+
+        public static final int IS_PART_TIME=1;
+        public static final int IS_FULL_TIME=2;
+
+        public final int EMP_RATE_PER_HOUR;
+        public final int NUM_OF_WORKING_DAYS;
+        public final int MAX_HRS_IN_MONTHS;
+        public final String company;
+        public int totalEmpWage;
+
+        public CompanyEmpWage(String company, int empRate, int numOfDays, int maxDays)
+        {
+                     this.company=company;
+                     EMP_RATE_PER_HOUR=empRate;
+                     NUM_OF_WORKING_DAYS=numOfDays;
+                     MAX_HRS_IN_MONTHS=maxDays;
+        }
+
+        public void setTotalEmpWage(int totalEmpWage)
+        {
+            this.totalEmpWage=totalEmpWage;
+        }
+        public String toString()
+        {
+          return "Total Emp Wage Company"+company+" is"+totalEmpWage;
+        }
+}
+
 
