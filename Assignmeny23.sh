@@ -131,3 +131,49 @@ public class EmployeeSwitch4
          }
 }
 
+###UserCase-6###
+Problem Statement---->(Calculate Wages till a condition of total working hours or days is reached for a month - Assume 100 hours and 2 days)
+public class EmployeeSwitch5
+{
+        public static final int IS_PART_TIME=1;
+        public static final int IS_FULL_TIME=2;
+        public static final int EMP_RATE_PER_HOUR=20;
+        public static final int Num_Of_Woking_Days=2;
+        public static final int Max_Hrs_In_Months=15;
+        public static void main(String args[])
+        {
+        int empHRS=0;
+        int empWage=0;
+        int totalEmpWage=0;
+        int totalEmpHrs=0;
+        int totalworkingdays=0;
+        public void employeeWage()
+        {
+        while(totalEmpHrs<=Max_Hrs_In_Months && totalworkingdays<Num_Of_Woking_Days)
+        {
+         totalworkingdays++;
+         int empcheck=(int)Math.floor(Math.random()*10)%3;
+         switch(empcheck)
+        {
+           case IS_FULL_TIME:
+           empHRS=8;
+           break;
+           case IS_PART_TIME:
+           empHRS=4;
+           break;
+           default:
+           empHRS=0;
+        }
+         totalEmpHrs+=empHRS;
+         System.out.println("totalworkingdays"+totalworkingdays+" "+"totalEmpHrs"+totalEmpHrs);
+        }
+         totalEmpWage=totalEmpHrs*EMP_RATE_PER_HOUR;
+         System.out.println("total employee wage"+totalEmpWage);
+        }
+         public static void main(String args[])
+         {
+         EmployeeSwitch5 emp=new EmployeeSwitch5();
+         emp.employeeWage();
+         }
+}
+
