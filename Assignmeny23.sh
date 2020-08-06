@@ -703,6 +703,119 @@ public class EmpWageOOPs1
 }
 
 
+###usercase-14###
+       import java.util.LinkedList;
+       import java.util.List;
+       import java.util.Map;
+       import java.util.HashMap;
+        public class EmpWageFinal1 implements IComputeEmpWage
+        {
+        public static final int IS_PART_TIME=1;
+        public static final int IS_FULL_TIME=2;
+
+        private int numOfCompany=0;
+        private LinkedList<CompanyEmpWage> companyEmpWageList;
+        private Map<String,CompanyEmpWage> companyToEmpWageMap;
+
+        public EmpWageFinal1(){
+               companyEmpWageList=new LinkedList<>();
+               companyToEmpWageMap=new HashMap<>();
+        }
+        private void addCompanyEmpWage(String company,int empRatePerHour,int numOfWorkingDays,int maxHoursPerMonth)
+        {
+                CompanyEmpWage companyEmpWage=new CompanyEmpWage(company,empRatePerHour,numOfWorkingDays,maxHoursPerMonth);
+               companyEmpWageList.add(companyEmpWage);
+               companyToEmpWageMap.put(company,companyEmpWage);
+        }
+        public void computeEmpWage()
+        {
+         /* for(int i=0;i<numOfCompany;i++)
+            {
+                   CompanyEmpWage companyEmpWage=companyEmpWageList.get(i);
+                   companyEmpWage.setTotalEmpWage(this.computeEmpWage(companyEmpWage));
+                   System.out.println(companyEmpWage);
+            }
+        }
+        public int getTotalWage(String company)
+        {
+         return companyToEmpWageMap.get(company).totalEmpWage;
+        }
+        private int computeEmpWage(CompanyEmpWage companyEmpWage)
+        {
+            int totalEmpWage=0;
+            int totalEmpHrs=0;
+            int totalWorkingDays=0;
+            while(totalEmpHrs < companyEmpWage.MAX_HRS_IN_MONTHS && totalWorkingDays <companyEmpWage.NUM_OF_WORKING_DAYS)
+        {
+            totalWorkingDays++;
+            int empHrs=0;
+            int empWage=0;
+            int empcheck=(int) Math.floor(Math.random()*10)%3;
+
+           switch(empcheck)
+        {
+           case IS_FULL_TIME:
+           empHrs=8;
+           break;
+           case IS_PART_TIME:
+           empHrs=4;
+           break;
+           default:
+           empHrs=0;
+        }
+         totalEmpHrs+= empHrs;
+         totalEmpWage += totalEmpHrs*companyEmpWage.NUM_OF_WORKING_DAYS;
+         System.out.println("Employee wage : "+totalWorkingDays);
+         System.out.println("total Employee Hrs : " + totalEmpHrs);
+        }
+            return totalEmpHrs*companyEmpWage.EMP_RATE_PER_HOUR;
+        */}
+        public static void main(String args[])
+        {
+         EmpWageFinal1 dmart=new EmpWageFinal1();
+         dmart.addCompanyEmpWage("Dmart",2,3,4);
+         dmart.addCompanyEmpWage("Reliance",8,5,3)  ;
+         dmart.computeEmpWage();
+         System.out.println("Total Wage for Dmart Company"+ dmart.getTotalWage("Dmart"));
+        }
+}
+       interface IComputeEmpWage
+       {
+       public void addCompanyempWage(String company, int empRatePerHour, int numOfWorkingDays, int maxHoursPerMonth);
+       public void computeEmpWage();
+       public int getTotalWage(String company);
+       }
+       class CompanyEmpWage
+       {
+
+        public static final int IS_PART_TIME=1;
+        public static final int IS_FULL_TIME=2;
+
+        public final int EMP_RATE_PER_HOUR;
+        public final int NUM_OF_WORKING_DAYS;
+        public final int MAX_HRS_IN_MONTHS;
+        public final String company;
+        public int totalEmpWage;
+
+        public CompanyEmpWage(String company, int empRate, int numOfDays, int maxDays)
+        {
+                     this.company=company;
+                     EMP_RATE_PER_HOUR=empRate;
+                     NUM_OF_WORKING_DAYS=numOfDays;
+                     MAX_HRS_IN_MONTHS=maxDays;
+        }
+
+        public void setTotalEmpWage(int totalEmpWage)
+        {
+            this.totalEmpWage=totalEmpWage;
+        }
+        public String toString()
+        {
+          return "Total Emp Wage Company"+company+" is"+totalEmpWage;
+        }
+}
+
+
 
 
 
