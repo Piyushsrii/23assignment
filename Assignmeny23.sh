@@ -212,3 +212,51 @@ public class Employee
      }
 
 }
+
+###UserCase-8###
+Problem Statement----->Compute Employee Wage for multiple companies - Note: Each Company has its own wage, number of working days and working hours >
+parameters instead of Class Variables.
+
+public class Empwage4
+{
+        public static final int IS_PART_TIME=1;
+        public static final int IS_FULL_TIME=2;
+        public static final int EMP_RATE_PER_HOUR=20;
+        public static final int NUM_OF_WORKING_DAYS=2;
+        public static final int MAX_HRS_IN_MONTHS=10;
+
+        public static void calCulateEmpWage(String company, int empRate, int numOfDays, int maxHrs)
+        {
+        int empHRS=0;
+        int empWage=0;
+        int totalEmpWage=0;
+        int totalEmpHrs=0;
+        int totalworkingdays=0;
+        while(totalEmpHrs<=maxHrs && totalworkingdays<numOfDays)
+        {
+         totalworkingdays++;
+         int empcheck=(int)Math.floor(Math.random()*10)%3;
+         switch(empcheck)
+        {
+           case IS_FULL_TIME:
+           empHRS=8;
+           break;
+           case IS_PART_TIME:
+           empHRS=4;
+           break;
+           default:
+           empHRS=0;
+        }
+         totalEmpHrs+=empHRS;
+         System.out.println("totalworkingdays"+totalworkingdays+" "+"EmpHrs"+empHRS);
+        }
+         totalEmpWage=totalEmpHrs*empRate;
+         System.out.println("total employee wage"+"Company is"+company+" "+totalEmpWage);
+}
+        public static void main(String args[])
+        {
+          calCulateEmpWage("Dmart",10,5,4);
+          calCulateEmpWage("Reliance",15,6,7);
+
+        }
+}
