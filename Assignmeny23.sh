@@ -87,6 +87,8 @@ public class Employee
 ###UserCase-4###
 Problem Statement------>Solving using Switch Case Statement
 
+###UserCase-5###
+Problem Statement------>(Calculating Wages for a Month - Assume 20 Working Day per Month)
 public class EmployeeSwitch4
 {
         public static final int IS_PART_TIME=1;
