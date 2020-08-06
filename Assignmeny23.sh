@@ -260,3 +260,54 @@ public class Empwage4
 
         }
 }
+
+##UserCase9##
+Problem-Statement--->Ability to save the Total Wage for Each Company - Note: You can Create EmpWageBuilder for each Company- Use Instance Variable instead of function parameters
+public class EmpWageOOPs
+{
+        public static final int IS_PART_TIME=1;
+        public static final int IS_FULL_TIME=2;
+
+        public final int EMP_RATE_PER_HOUR;
+        public final int NUM_OF_WORKING_DAYS;
+        public final int MAX_HRS_IN_MONTHS;
+        public final String company;
+
+        public EmpWageOOPs(String company, int empRate, int numOfDays, int maxDays)
+        {
+                     this.company=company;
+                     EMP_RATE_PER_HOUR=empRate;
+                     NUM_OF_WORKING_DAYS=numOfDays;
+                     MAX_HRS_IN_MONTHS=maxDays;
+        }
+        public static void main(String args[])
+        {
+        EmpWageOOPs companywage=new EmpWageOOPs("DMART",2,4,6);
+        int totalEmpHrs=0,totalEmpWage=0,totalWorkingDays=0;
+        while(totalEmpHrs<=companywage.MAX_HRS_IN_MONTHS && totalWorkingDays<companywage.NUM_OF_WORKING_DAYS)
+        {
+         totalWorkingDays++;
+         int empHrs=0,empWage=0;
+         int empcheck=(int)Math.floor(Math.random()*10)%3;
+         switch(empcheck)
+        {
+           case IS_FULL_TIME:
+           empHrs=8;
+           break;
+           case IS_PART_TIME:
+           empHrs=4;
+           break;
+           default:
+           empHrs=0;
+        }
+         totalEmpHrs+=empHrs;
+         empWage=empHrs*companywage.EMP_RATE_PER_HOUR;
+         totalEmpWage += empWage;
+         System.out.println("Employee wage :"+empWage);
+        }
+         System.out.println("total Employee wage : " + totalEmpWage);
+        }
+}
+
+
+
